@@ -1,128 +1,189 @@
 // music/astroenergies/js/main.js
 
-const LOCAL_JSON = "data/local_tracks.json";
-const APPLE_JSON = "data/apple_catalog.json";
+// OPTION 2: server-generated playlist endpoint
+const LOCAL_API = "/music/astroenergies/api/local_tracks.php";
 
 const audioEl = document.getElementById("ae-audio");
 const nowTitleEl = document.getElementById("ae-now-title");
-const playlistEl = document.getElementById("ae-playlist");
-const discographyEl = document.getElementById("ae-discography");
-
 const yearEl = document.getElementById("ae-year");
+
+const carouselEl = document.getElementById("ae-carousel");
+const prevBtn = document.getElementById("ae-prev");
+const nextBtn = document.getElementById("ae-next");
+
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-let localTracks = [];
+let tracks = [];
 let currentIndex = 0;
 
 function safeText(s) {
   return String(s ?? "").trim();
 }
 
+function encodePath(path) {
+  // encode each segment so weird filenames like "1:1.m4a" still work
+  return path
+    .split("/")
+    .map((seg) => encodeURIComponent(seg))
+    .join("/");
+}
+
 function setNowPlaying(title) {
   if (nowTitleEl) nowTitleEl.textContent = title || "--";
 }
 
-function playIndex(idx) {
-  if (!localTracks.length) return;
-  currentIndex = Math.max(0, Math.min(idx, localTracks.length - 1));
-  const t = localTracks[currentIndex];
+function modIndex(i) {
+  if (!tracks.length) return 0;
+  return (i + tracks.length) % tracks.length; // loop
+}
 
-  // Mark active
-  [...playlistEl.querySelectorAll("li")].forEach((li) => li.classList.remove("active"));
-  const active = playlistEl.querySelector(`li[data-index="${currentIndex}"]`);
+function saveIndex() {
+  localStorage.setItem("ae_currentIndex", String(currentIndex));
+}
+
+function loadSavedIndex() {
+  const n = parseInt(localStorage.getItem("ae_currentIndex") || "0", 10);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function updateCarouselPosition() {
+  if (!carouselEl) return;
+  carouselEl.style.transform = `translateX(${-currentIndex * 100}%)`;
+}
+
+function updateActiveSlide() {
+  if (!carouselEl) return;
+  [...carouselEl.querySelectorAll(".ae-slide")].forEach((el) => el.classList.remove("active"));
+  const active = carouselEl.querySelector(`.ae-slide[data-index="${currentIndex}"]`);
   if (active) active.classList.add("active");
-
-  audioEl.src = t.file;
-  setNowPlaying(t.title);
-
-  audioEl.play().catch(() => {
-    // Autoplay often blocked; user can press play manually.
-  });
 }
 
-function renderPlaylist() {
-  playlistEl.innerHTML = "";
-  localTracks.forEach((track, index) => {
-    const li = document.createElement("li");
-    li.dataset.index = String(index);
-    li.innerHTML = `
-      <span class="track-title">${safeText(track.title) || "Untitled"}</span>
-      <span class="track-meta">${safeText(track.release) || "—"} · ${safeText(track.note) || "Local master"}</span>
+function setIndex(i, { preloadAudio = true } = {}) {
+  currentIndex = modIndex(i);
+  updateCarouselPosition();
+  updateActiveSlide();
+
+  const t = tracks[currentIndex];
+  setNowPlaying(safeText(t.title) || "--");
+  saveIndex();
+
+  if (preloadAudio && audioEl) {
+    // IMPORTANT: make sure file paths are relative to /music/astroenergies/
+    audioEl.src = encodePath(t.file);
+  }
+}
+
+function playIndex(i, autoplay = true) {
+  if (!tracks.length || !audioEl) return;
+  setIndex(i, { preloadAudio: true });
+
+  if (autoplay) {
+    audioEl.play().catch(() => {});
+  }
+}
+
+function next() {
+  playIndex(currentIndex + 1, true);
+}
+
+function prev() {
+  playIndex(currentIndex - 1, true);
+}
+
+function renderCarousel() {
+  if (!carouselEl) return;
+  carouselEl.innerHTML = "";
+
+  tracks.forEach((t, i) => {
+    const slide = document.createElement("div");
+    slide.className = "ae-slide";
+    slide.dataset.index = String(i);
+
+    const title = safeText(t.title) || "Untitled";
+    const cover = safeText(t.cover) || "img/astroenergies-logo.png";
+    const release = safeText(t.release);
+
+    slide.innerHTML = `
+      <div class="ae-cover">
+        <img src="${encodePath(cover)}" alt="${title} cover" loading="lazy" />
+      </div>
+      <div class="ae-slide-meta">
+        <div class="ae-slide-title">${title}</div>
+        <div class="ae-slide-sub">${release}</div>
+      </div>
+      <button class="ae-slide-play" type="button">Play</button>
     `;
-    li.addEventListener("click", () => playIndex(index));
-    playlistEl.appendChild(li);
+
+    slide.querySelector(".ae-slide-play")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      playIndex(i, true);
+    });
+
+    slide.addEventListener("click", () => {
+      // select slide without forcing autoplay
+      setIndex(i, { preloadAudio: true });
+    });
+
+    carouselEl.appendChild(slide);
   });
 
-  if (localTracks.length) {
-    // Default: first track queued but not forced autoplay
-    playIndex(0);
-    audioEl.pause();
-  } else {
-    setNowPlaying("--");
-  }
+  updateCarouselPosition();
+  updateActiveSlide();
 }
 
-function renderDiscovery(releases) {
-  discographyEl.innerHTML = "";
-
-  if (!Array.isArray(releases) || releases.length === 0) {
-    discographyEl.innerHTML = `<div class="ae-release"><h3>No catalog found yet.</h3><div class="ae-release-meta">Run the backend sync script.</div></div>`;
-    return;
-  }
-
-  releases.forEach((r) => {
-    const card = document.createElement("div");
-    card.className = "ae-release";
-
-    const title = safeText(r.title) || "Untitled";
-    const kind = safeText(r.kind) || "release";
-    const date = safeText(r.releaseDate) || "—";
-    const source = safeText(r.source) || "Apple Music";
-    const url = safeText(r.url);
-
-    card.innerHTML = `
-      <h3>${title}</h3>
-      <div class="ae-release-meta">${date} · ${kind} · ${source}</div>
-      ${url ? `<a href="${url}" target="_blank" rel="noopener">Open on Apple Music</a>` : ``}
-    `;
-
-    discographyEl.appendChild(card);
-  });
-}
-
-async function loadJson(path) {
-  const res = await fetch(path, { cache: "no-store" });
-  if (!res.ok) throw new Error(`Failed to load ${path} (${res.status})`);
-  return res.json();
-}
-
-async function boot() {
-  // Local
+async function loadTracksFromApi() {
   try {
-    const local = await loadJson(LOCAL_JSON);
-    localTracks = Array.isArray(local) ? local : [];
-  } catch (e) {
-    console.warn("Local tracks JSON missing:", e);
-    localTracks = [];
-  }
-  renderPlaylist();
+    const res = await fetch(LOCAL_API, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${LOCAL_API}`);
 
-  // Apple catalog
-  try {
-    const apple = await loadJson(APPLE_JSON);
-    // expected: { releases: [...] }
-    renderDiscovery(apple?.releases || []);
-  } catch (e) {
-    console.warn("Apple catalog JSON missing:", e);
-    renderDiscovery([]);
-  }
+    const data = await res.json();
 
-  // Auto-advance
-  audioEl.addEventListener("ended", () => {
-    if (!localTracks.length) return;
-    const next = (currentIndex + 1) % localTracks.length;
-    playIndex(next);
-  });
+    // API returns an array: [ {title, release, file, note, ...}, ... ]
+    const list = Array.isArray(data) ? data : [];
+
+    tracks = list
+      .map((t) => ({
+        title: safeText(t.title),
+        release: safeText(t.release),
+        note: safeText(t.note),
+        file: safeText(t.file),
+        cover: safeText(t.cover), // optional; php doesn’t provide it unless you add it later
+      }))
+      .filter((t) => t.file.length > 0);
+
+    if (!tracks.length) {
+      setNowPlaying("No local tracks found.");
+      return;
+    }
+
+    renderCarousel();
+
+    const saved = loadSavedIndex();
+    currentIndex = modIndex(saved);
+
+    // preload first selection, no autoplay on load
+    setIndex(currentIndex, { preloadAudio: true });
+  } catch (err) {
+    console.error(err);
+    setNowPlaying("Could not load local tracks (API).");
+  }
 }
 
-boot();
+// controls
+prevBtn?.addEventListener("click", prev);
+nextBtn?.addEventListener("click", next);
+
+// loop on ended
+audioEl?.addEventListener("ended", next);
+
+// keyboard (optional)
+document.addEventListener("keydown", (e) => {
+  const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
+  if (tag === "input" || tag === "textarea") return;
+
+  if (e.code === "ArrowRight") next();
+  if (e.code === "ArrowLeft") prev();
+});
+
+// IMPORTANT: wait for DOM, so elements exist before we use them
+document.addEventListener("DOMContentLoaded", loadTracksFromApi);

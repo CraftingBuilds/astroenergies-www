@@ -143,6 +143,114 @@ body {
   color: var(--ae-cream);
 }
 
+/* ===== Carousel Player ===== */
+.ae-carousel-wrap {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.ae-carousel-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(233, 226, 217, 0.2);
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--ae-cream);
+  cursor: pointer;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.ae-carousel-btn:hover {
+  border-color: var(--ae-gold);
+}
+
+.ae-carousel-viewport {
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(233, 226, 217, 0.12);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.ae-carousel {
+  display: flex;
+  width: 100%;
+  transform: translateX(0%);
+  transition: transform 0.25s ease-out;
+}
+
+.ae-slide {
+  flex: 0 0 100%;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 96px 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.ae-slide.active {
+  box-shadow: 0 0 0 1px rgba(216,196,138,0.25) inset;
+}
+
+.ae-cover {
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(233, 226, 217, 0.12);
+  background: rgba(0,0,0,0.4);
+}
+
+.ae-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ae-slide-meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ae-slide-title {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.ae-slide-sub {
+  color: var(--ae-gray);
+  font-size: 0.85rem;
+}
+
+.ae-slide-play {
+  border: 1px solid rgba(233, 226, 217, 0.2);
+  background: rgba(130, 104, 55, 0.10);
+  color: var(--ae-cream);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--ae-radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ae-slide-play:hover {
+  border-color: var(--ae-gold);
+  background: rgba(130, 104, 55, 0.18);
+}
+
+@media (max-width: 640px) {
+  .ae-slide {
+    grid-template-columns: 72px 1fr;
+    grid-template-rows: auto auto;
+  }
+  .ae-cover { width: 72px; height: 72px; }
+  .ae-slide-play { grid-column: 1 / -1; justify-self: start; }
+}
+
 /* Sections */
 
 .ae-section {
@@ -196,52 +304,81 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Playlist */
+/* Playlist (updated for button-based rows) */
 
 .ae-playlist {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.5rem;
+  display: flex;              /* was grid */
+  flex-direction: column;     /* rows */
+  gap: 0.6rem;
 }
 
-.ae-playlist li {
+.ae-playlist li.ae-track {
   border-radius: 16px;
-  padding: 0.6rem 0.8rem;
+  padding: 0.85rem 1rem;
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(233, 226, 217, 0.08);
-  cursor: pointer;
-  font-size: 0.85rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   transition: all 0.15s ease-out;
 }
 
-.ae-playlist li span {
-  display: block;
-}
-
-.ae-playlist li .track-title {
-  font-weight: 600;
-}
-
-.ae-playlist li .track-meta {
-  color: var(--ae-gray);
-  font-size: 0.8rem;
-}
-
-.ae-playlist li:hover {
+.ae-playlist li.ae-track:hover {
   border-color: var(--ae-gold);
   transform: translateY(-1px);
 }
 
-.ae-playlist li.active {
+/* active track highlight */
+.ae-playlist li.ae-track.active {
   background: rgba(130, 104, 55, 0.24);
   border-color: var(--ae-gold);
 }
+
+/* text block */
+.ae-playlist .track-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.ae-playlist .track-title {
+  font-weight: 600;
+}
+
+.ae-playlist .track-meta {
+  color: var(--ae-gray);
+  font-size: 0.8rem;
+}
+
+/* play button */
+.ae-playlist .track-play {
+  border: 1px solid rgba(233, 226, 217, 0.2);
+  background: rgba(130, 104, 55, 0.10);
+  color: var(--ae-cream);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--ae-radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease-out;
+}
+
+.ae-playlist .track-play:hover {
+  border-color: var(--ae-gold);
+  background: rgba(130, 104, 55, 0.18);
+}
+
+/* Mobile touch comfort */
+@media (max-width: 640px) {
+  .ae-playlist li.ae-track {
+    padding: 0.8rem 0.9rem;
+  }
+}
+
 
 /* Discovery grid */
 

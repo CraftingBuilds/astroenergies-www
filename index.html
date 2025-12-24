@@ -5,8 +5,14 @@
   <title>astroenergies – Sound of the Stars</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/astroenergies.css" />
+  <!-- SITEWIDE NAV + FOOTER CSS (load AFTER division CSS) -->
+  <link rel="stylesheet" href="/css/nav.css?v=3" />
 </head>
 <body>
+<!-- GLOBAL NAV -->
+<div id="nav-placeholder"></div>
+<script src="/js/nav-loader.js"></script>
+
   <header class="ae-header">
     <div class="ae-header-inner">
       <img src="img/astroenergies-logo.png" alt="astroenergies logo" class="ae-logo" />
@@ -54,7 +60,14 @@
           Your browser does not support the audio element.
         </audio>
 
-        <ul id="ae-playlist" class="ae-playlist"></ul>
+        <div class="ae-carousel-wrap">
+          <button class="ae-carousel-btn" id="ae-prev" type="button" aria-label="Previous track">‹</button>
+
+          <div class="ae-carousel-viewport">
+            <div class="ae-carousel-viewport"></div>
+          </div>
+
+          <button class="ae-carousel-btn" id="ae-next" type="button" aria-label="Next track">,</button>
       </div>
     </section>
 
@@ -92,8 +105,12 @@
 
   <footer class="ae-footer">
     <p>© <span id="ae-year"></span> astroenergies · crafted under the stars</p>
+  <!-- GLOBAL FOOTER (sitewide, below division footer) -->
+  <div id="footer-placeholder"></div>
+  <script src="/js/footer-loader.js"></script>
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="/music/astroenergies/js/discovery.js" defer></script>
 </body>
 </html>
