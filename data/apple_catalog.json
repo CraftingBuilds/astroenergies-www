@@ -1,0 +1,345 @@
+{
+  "generatedAt": "2025-12-24T08:00:01.818440Z",
+  "artistIds": [
+    "1832538332",
+    "1831765259"
+  ],
+  "releases": [
+    {
+      "id": "apple-track-1861354912",
+      "title": "2461024.3139",
+      "releaseDate": "2025-12-14",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/2461024-3139/1861354911?i=1861354912&uo=4"
+    },
+    {
+      "id": "apple-track-1861351602",
+      "title": "2461024.1174",
+      "releaseDate": "2025-12-14",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/2461024-1174/1861351601?i=1861351602&uo=4"
+    },
+    {
+      "id": "apple-track-1858451289",
+      "title": "sAlt",
+      "releaseDate": "2025-12-10",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/salt/1858451288?i=1858451289&uo=4"
+    },
+    {
+      "id": "apple-track-1858451291",
+      "title": "r3seT",
+      "releaseDate": "2025-12-10",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/r3set/1858451288?i=1858451291&uo=4"
+    },
+    {
+      "id": "apple-track-1858451290",
+      "title": "eNERGYHEX",
+      "releaseDate": "2025-12-10",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/energyhex/1858451288?i=1858451290&uo=4"
+    },
+    {
+      "id": "apple-track-1857652931",
+      "title": "El3ctr0Sw1nG",
+      "releaseDate": "2025-12-02",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/el3ctr0sw1ng/1857652929?i=1857652931&uo=4"
+    },
+    {
+      "id": "apple-track-1857047135",
+      "title": "You feel that?",
+      "releaseDate": "2025-11-27",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/you-feel-that/1857047134?i=1857047135&uo=4"
+    },
+    {
+      "id": "apple-track-1856870700",
+      "title": "eNERGYHEX",
+      "releaseDate": "2025-11-26",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/energyhex/1856870697?i=1856870700&uo=4"
+    },
+    {
+      "id": "apple-track-1856737249",
+      "title": "The Key of Magic (Thoth's Emerald Tablet VI)",
+      "releaseDate": "2025-11-26",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/the-key-of-magic-thoths-emerald-tablet-vi/1856737248?i=1856737249&uo=4"
+    },
+    {
+      "id": "apple-track-1856870701",
+      "title": "r3seT",
+      "releaseDate": "2025-11-26",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/r3set/1856870697?i=1856870701&uo=4"
+    },
+    {
+      "id": "apple-track-1856870698",
+      "title": "sAlt",
+      "releaseDate": "2025-11-26",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/salt/1856870697?i=1856870698&uo=4"
+    },
+    {
+      "id": "apple-track-1855398072",
+      "title": "2461000-2118",
+      "releaseDate": "2025-11-20",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/2461000-2118/1855398071?i=1855398072&uo=4"
+    },
+    {
+      "id": "apple-track-1849755084",
+      "title": "2460966.6528",
+      "releaseDate": "2025-11-01",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/2460966-6528/1849755083?i=1849755084&uo=4"
+    },
+    {
+      "id": "apple-track-1849092973",
+      "title": "Samhain Soundscape ‘25",
+      "releaseDate": "2025-10-30",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/samhain-soundscape-25/1849092972?i=1849092973&uo=4"
+    },
+    {
+      "id": "apple-track-1849139181",
+      "title": "Protection Chant",
+      "releaseDate": "2025-10-30",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/protection-chant/1849139180?i=1849139181&uo=4"
+    },
+    {
+      "id": "apple-track-1848645336",
+      "title": "Protection Chant",
+      "releaseDate": "2025-10-22",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/protection-chant/1848645335?i=1848645336&uo=4"
+    },
+    {
+      "id": "apple-track-1848540432",
+      "title": "Who We Are",
+      "releaseDate": "2025-10-21",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/who-we-are/1848540429?i=1848540432&uo=4"
+    },
+    {
+      "id": "apple-track-1848500597",
+      "title": "Call The Dead",
+      "releaseDate": "2025-10-21",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/call-the-dead/1848500595?i=1848500597&uo=4"
+    },
+    {
+      "id": "apple-track-1848540430",
+      "title": "2460969.7722222223",
+      "releaseDate": "2025-10-21",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/2460969-7722222223/1848540429?i=1848540430&uo=4"
+    },
+    {
+      "id": "apple-track-1848540431",
+      "title": "Spokane",
+      "releaseDate": "2025-10-18",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/spokane/1848540429?i=1848540431&uo=4"
+    },
+    {
+      "id": "apple-track-1840660431",
+      "title": "From the Devil’s Fires",
+      "releaseDate": "2025-09-30",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/from-the-devils-fires/1840660430?i=1840660431&uo=4"
+    },
+    {
+      "id": "apple-track-1840487077",
+      "title": "From the Devils Fires",
+      "releaseDate": "2025-09-30",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/from-the-devils-fires/1840487076?i=1840487077&uo=4"
+    },
+    {
+      "id": "apple-track-1832629117",
+      "title": "dripping",
+      "releaseDate": "2025-09-08",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/dripping/1832629116?i=1832629117&uo=4"
+    },
+    {
+      "id": "apple-track-1833968317",
+      "title": "Summon The Shifters",
+      "releaseDate": "2025-08-20",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/summon-the-shifters/1833968316?i=1833968317&uo=4"
+    },
+    {
+      "id": "apple-track-1849944417",
+      "title": "On the Mount",
+      "releaseDate": "2025-08-17",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/on-the-mount/1849944416?i=1849944417&uo=4"
+    },
+    {
+      "id": "apple-track-1833373462",
+      "title": "Smooth",
+      "releaseDate": "2025-08-16",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/smooth/1833373461?i=1833373462&uo=4"
+    },
+    {
+      "id": "apple-track-1832836503",
+      "title": "Bag ,o Bones Druid",
+      "releaseDate": "2025-08-14",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/bag-o-bones-druid/1832836502?i=1832836503&uo=4"
+    },
+    {
+      "id": "apple-track-1832916198",
+      "title": "Protocol",
+      "releaseDate": "2025-08-14",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/protocol/1832916197?i=1832916198&uo=4"
+    },
+    {
+      "id": "apple-track-1832836815",
+      "title": "Galactic Signals",
+      "releaseDate": "2025-08-14",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/galactic-signals/1832836814?i=1832836815&uo=4"
+    },
+    {
+      "id": "apple-track-1832552254",
+      "title": "Safeway",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/safeway/1832552253?i=1832552254&uo=4"
+    },
+    {
+      "id": "apple-track-1832552927",
+      "title": "1:1",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/1-1/1832552926?i=1832552927&uo=4"
+    },
+    {
+      "id": "apple-track-1832715818",
+      "title": "A Night Awake",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/a-night-awake/1832715817?i=1832715818&uo=4"
+    },
+    {
+      "id": "apple-track-1832715940",
+      "title": "The Wicked Don’t Rest",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/the-wicked-dont-rest/1832715939?i=1832715940&uo=4"
+    },
+    {
+      "id": "apple-track-1832552932",
+      "title": "walking",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/walking/1832552931?i=1832552932&uo=4"
+    },
+    {
+      "id": "apple-track-1832538876",
+      "title": "Heart Flute On A New Moon",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/heart-flute-on-a-new-moon/1832538875?i=1832538876&uo=4"
+    },
+    {
+      "id": "apple-track-1832552781",
+      "title": "Victory Is Ours",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/victory-is-ours/1832552780?i=1832552781&uo=4"
+    },
+    {
+      "id": "apple-track-1832551749",
+      "title": "Lightyears",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/lightyears/1832551747?i=1832551749&uo=4"
+    },
+    {
+      "id": "apple-track-1832716451",
+      "title": "house",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/house/1832716450?i=1832716451&uo=4"
+    },
+    {
+      "id": "apple-track-1832552589",
+      "title": "Run",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/run/1832552588?i=1832552589&uo=4"
+    },
+    {
+      "id": "apple-track-1832552827",
+      "title": "The Dreamscape",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/the-dreamscape/1832552826?i=1832552827&uo=4"
+    },
+    {
+      "id": "apple-track-1832552598",
+      "title": "That’s Right",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/thats-right/1832552597?i=1832552598&uo=4"
+    },
+    {
+      "id": "apple-track-1832041575",
+      "title": "Shadow Systems Launch",
+      "releaseDate": "2025-08-07",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/shadow-systems-launch/1832041574?i=1832041575&uo=4"
+    }
+  ]
+}
