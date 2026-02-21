@@ -1,10 +1,34 @@
 {
-  "generatedAt": "2025-12-24T21:50:01.650851Z",
+  "generatedAt": "2026-02-21T08:20:02.291934Z",
   "artistIds": [
     "1832538332",
     "1831765259"
   ],
   "releases": [
+    {
+      "id": "apple-track-1877531325",
+      "title": "The Key of Magick Full",
+      "releaseDate": "2026-02-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1831765259)",
+      "url": "https://music.apple.com/us/album/the-key-of-magick-full/1877531324?i=1877531325&uo=4"
+    },
+    {
+      "id": "apple-track-1865218078",
+      "title": "That Line Tho…",
+      "releaseDate": "2026-01-01",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/that-line-tho/1865218077?i=1865218078&uo=4"
+    },
+    {
+      "id": "apple-track-1865236676",
+      "title": "2461024.1174",
+      "releaseDate": "2025-12-14",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/2461024-1174/1865236675?i=1865236676&uo=4"
+    },
     {
       "id": "apple-track-1861354912",
       "title": "2461024.3139",
@@ -12,14 +36,6 @@
       "kind": "track",
       "source": "Apple Music (artist 1831765259)",
       "url": "https://music.apple.com/us/album/2461024-3139/1861354911?i=1861354912&uo=4"
-    },
-    {
-      "id": "apple-track-1861351602",
-      "title": "2461024.1174",
-      "releaseDate": "2025-12-14",
-      "kind": "track",
-      "source": "Apple Music (artist 1831765259)",
-      "url": "https://music.apple.com/us/album/2461024-1174/1861351601?i=1861351602&uo=4"
     },
     {
       "id": "apple-track-1858451289",
@@ -68,14 +84,6 @@
       "kind": "track",
       "source": "Apple Music (artist 1831765259)",
       "url": "https://music.apple.com/us/album/energyhex/1856870697?i=1856870700&uo=4"
-    },
-    {
-      "id": "apple-track-1856737249",
-      "title": "The Key of Magic (Thoth's Emerald Tablet VI)",
-      "releaseDate": "2025-11-26",
-      "kind": "track",
-      "source": "Apple Music (artist 1831765259)",
-      "url": "https://music.apple.com/us/album/the-key-of-magic-thoths-emerald-tablet-vi/1856737248?i=1856737249&uo=4"
     },
     {
       "id": "apple-track-1856870701",
@@ -174,14 +182,6 @@
       "url": "https://music.apple.com/us/album/from-the-devils-fires/1840660430?i=1840660431&uo=4"
     },
     {
-      "id": "apple-track-1840487077",
-      "title": "From the Devils Fires",
-      "releaseDate": "2025-09-30",
-      "kind": "track",
-      "source": "Apple Music (artist 1832538332)",
-      "url": "https://music.apple.com/us/album/from-the-devils-fires/1840487076?i=1840487077&uo=4"
-    },
-    {
       "id": "apple-track-1832629117",
       "title": "dripping",
       "releaseDate": "2025-09-08",
@@ -238,20 +238,20 @@
       "url": "https://music.apple.com/us/album/galactic-signals/1832836814?i=1832836815&uo=4"
     },
     {
-      "id": "apple-track-1832552254",
-      "title": "Safeway",
-      "releaseDate": "2025-08-13",
-      "kind": "track",
-      "source": "Apple Music (artist 1832538332)",
-      "url": "https://music.apple.com/us/album/safeway/1832552253?i=1832552254&uo=4"
-    },
-    {
       "id": "apple-track-1832552927",
       "title": "1:1",
       "releaseDate": "2025-08-13",
       "kind": "track",
       "source": "Apple Music (artist 1832538332)",
       "url": "https://music.apple.com/us/album/1-1/1832552926?i=1832552927&uo=4"
+    },
+    {
+      "id": "apple-track-1832552254",
+      "title": "Safeway",
+      "releaseDate": "2025-08-13",
+      "kind": "track",
+      "source": "Apple Music (artist 1832538332)",
+      "url": "https://music.apple.com/us/album/safeway/1832552253?i=1832552254&uo=4"
     },
     {
       "id": "apple-track-1832715818",

@@ -1,6 +1,4 @@
-// music/astroenergies/js/main.js
-
-// OPTION 2: server-generated playlist endpoint
+// /music/astroenergies/js/main.js
 const LOCAL_API = "/music/astroenergies/api/local_tracks.php";
 
 const audioEl = document.getElementById("ae-audio");
@@ -21,8 +19,7 @@ function safeText(s) {
 }
 
 function encodePath(path) {
-  // encode each segment so weird filenames like "1:1.m4a" still work
-  return path
+  return safeText(path)
     .split("/")
     .map((seg) => encodeURIComponent(seg))
     .join("/");
@@ -34,7 +31,7 @@ function setNowPlaying(title) {
 
 function modIndex(i) {
   if (!tracks.length) return 0;
-  return (i + tracks.length) % tracks.length; // loop
+  return (i + tracks.length) % tracks.length;
 }
 
 function saveIndex() {
@@ -68,7 +65,6 @@ function setIndex(i, { preloadAudio = true } = {}) {
   saveIndex();
 
   if (preloadAudio && audioEl) {
-    // IMPORTANT: make sure file paths are relative to /music/astroenergies/
     audioEl.src = encodePath(t.file);
   }
 }
@@ -77,18 +73,11 @@ function playIndex(i, autoplay = true) {
   if (!tracks.length || !audioEl) return;
   setIndex(i, { preloadAudio: true });
 
-  if (autoplay) {
-    audioEl.play().catch(() => {});
-  }
+  if (autoplay) audioEl.play().catch(() => {});
 }
 
-function next() {
-  playIndex(currentIndex + 1, true);
-}
-
-function prev() {
-  playIndex(currentIndex - 1, true);
-}
+function next() { playIndex(currentIndex + 1, true); }
+function prev() { playIndex(currentIndex - 1, true); }
 
 function renderCarousel() {
   if (!carouselEl) return;
@@ -120,7 +109,6 @@ function renderCarousel() {
     });
 
     slide.addEventListener("click", () => {
-      // select slide without forcing autoplay
       setIndex(i, { preloadAudio: true });
     });
 
@@ -137,8 +125,6 @@ async function loadTracksFromApi() {
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${LOCAL_API}`);
 
     const data = await res.json();
-
-    // API returns an array: [ {title, release, file, note, ...}, ... ]
     const list = Array.isArray(data) ? data : [];
 
     tracks = list
@@ -147,7 +133,7 @@ async function loadTracksFromApi() {
         release: safeText(t.release),
         note: safeText(t.note),
         file: safeText(t.file),
-        cover: safeText(t.cover), // optional; php doesn’t provide it unless you add it later
+        cover: safeText(t.cover),
       }))
       .filter((t) => t.file.length > 0);
 
@@ -158,13 +144,10 @@ async function loadTracksFromApi() {
 
     renderCarousel();
 
-    const saved = loadSavedIndex();
-    currentIndex = modIndex(saved);
-
-    // preload first selection, no autoplay on load
+    currentIndex = modIndex(loadSavedIndex());
     setIndex(currentIndex, { preloadAudio: true });
-  } catch (err) {
-    console.error(err);
+  } catch (e) {
+    console.error("Player load failed:", e);
     setNowPlaying("Could not load local tracks (API).");
   }
 }
@@ -172,18 +155,13 @@ async function loadTracksFromApi() {
 // controls
 prevBtn?.addEventListener("click", prev);
 nextBtn?.addEventListener("click", next);
-
-// loop on ended
 audioEl?.addEventListener("ended", next);
 
-// keyboard (optional)
 document.addEventListener("keydown", (e) => {
   const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
   if (tag === "input" || tag === "textarea") return;
-
   if (e.code === "ArrowRight") next();
   if (e.code === "ArrowLeft") prev();
 });
 
-// IMPORTANT: wait for DOM, so elements exist before we use them
 document.addEventListener("DOMContentLoaded", loadTracksFromApi);
