@@ -11,7 +11,6 @@
 <body>
 <!-- GLOBAL NAV -->
 <div id="nav-placeholder"></div>
-<script src="/js/nav-loader.js?v=5"></script>
 
   <header class="ae-header">
     <div class="ae-header-inner">
@@ -56,6 +55,19 @@
           <span id="ae-now-title">--</span>
         </div>
 
+        <div class="ae-player-controls-row">
+          <button class="ae-player-control-btn" id="ae-prev" type="button" aria-label="Previous track">&lt;</button>
+          <button class="ae-player-control-btn" id="ae-play-toggle" type="button" aria-label="Play or pause">Play</button>
+          <button class="ae-player-control-btn" id="ae-next" type="button" aria-label="Next track">&gt;</button>
+          <button class="ae-player-control-btn" id="ae-shuffle" type="button" aria-pressed="false" aria-label="Toggle shuffle playback">Shuffle Off</button>
+        </div>
+
+        <audio id="ae-audio" controlslist="nodownload noremoteplayback" preload="metadata" disablepictureinpicture>
+          Your browser does not support the audio element.
+        </audio>
+
+        <input id="ae-progress" class="ae-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Playback progress" />
+        <div id="ae-time" class="ae-time">0:00 / 0:00</div>
         <audio id="ae-audio" controls controlslist="nodownload noremoteplayback" preload="metadata" disablepictureinpicture>
           Your browser does not support the audio element.
         </audio>
@@ -116,12 +128,14 @@
 
   <footer class="ae-footer">
     <p>© <span id="ae-year"></span> astroenergies · crafted under the stars</p>
-  <!-- GLOBAL FOOTER (sitewide, below division footer) -->
-  <div id="footer-placeholder"></div>
-  <script src="/js/footer-loader.js"></script>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- GLOBAL FOOTER (sitewide) -->
+  <div id="footer-placeholder"></div>
+
+  <script src="/js/nav-loader.js?v=5" defer></script>
+  <script src="/js/footer-loader.js" defer></script>
+  <script src="js/main.js" defer></script>
   <script src="/music/astroenergies/js/discovery.js" defer></script>
 </body>
 </html>
