@@ -52,6 +52,9 @@ function updateTimeUi() {
 
   progressEl.value = String(pct);
   timeEl.textContent = `${fmtTime(current)} / ${fmtTime(duration)}`;
+function updateCarouselPosition() {
+  if (!carouselEl) return;
+  carouselEl.style.transform = `translateX(${-currentIndex * 100}%)`;
 }
 
 function updatePlayButtonUi() {
@@ -107,11 +110,72 @@ function next() {
 function prev() {
   if (!tracks.length) return;
   setIndex(currentIndex - 1, { autoplay: true });
+function next() {
+  if (!tracks.length) return;
+
+  if (!shuffleEnabled || tracks.length < 2) {
+    playIndex(currentIndex + 1, true);
+    return;
+  }
+
+  let candidate = currentIndex;
+  while (candidate === currentIndex) {
+    candidate = Math.floor(Math.random() * tracks.length);
+  }
+  playIndex(candidate, true);
+}
+
+function prev() { playIndex(currentIndex - 1, true); }
+
+function updateShuffleUi() {
+  if (!shuffleBtn) return;
+  shuffleBtn.setAttribute("aria-pressed", String(shuffleEnabled));
+  shuffleBtn.textContent = shuffleEnabled ? "Shuffle: On" : "Shuffle: Off";
 }
 
 function toggleShuffle() {
   shuffleEnabled = !shuffleEnabled;
   updateShuffleUi();
+}
+
+function renderCarousel() {
+  if (!carouselEl) return;
+  carouselEl.innerHTML = "";
+
+  tracks.forEach((t, i) => {
+    const slide = document.createElement("div");
+    slide.className = "ae-slide";
+    slide.dataset.index = String(i);
+
+    const title = safeText(t.title) || "Untitled";
+    const cover = safeText(t.cover) || "img/astroenergies-logo.png";
+    const release = safeText(t.release);
+
+    slide.innerHTML = `
+      <div class="ae-cover">
+        <img src="${encodePath(cover)}" alt="${title} cover" loading="lazy" />
+      </div>
+      <div class="ae-slide-meta">
+        <div class="ae-slide-title">${title}</div>
+        <div class="ae-slide-sub">${release}</div>
+      </div>
+      <button class="ae-slide-play" type="button">Play</button>
+    `;
+
+    slide.querySelector(".ae-slide-play")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      playIndex(i, true);
+    });
+
+    slide.addEventListener("click", () => {
+      setIndex(i, { preloadAudio: true });
+    });
+
+    carouselEl.appendChild(slide);
+  });
+
+  updateCarouselPosition();
+  updateActiveSlide();
 }
 
 async function loadTracksFromApi() {
@@ -135,6 +199,10 @@ async function loadTracksFromApi() {
     }
 
     setIndex(0, { autoplay: false });
+    renderCarousel();
+
+    currentIndex = 0;
+    setIndex(currentIndex, { preloadAudio: true });
   } catch (e) {
     console.error("Player load failed:", e);
     setNowPlaying("Could not load local tracks (API).");
@@ -161,6 +229,11 @@ progressEl?.addEventListener("input", () => {
 updateShuffleUi();
 updatePlayButtonUi();
 updateTimeUi();
+shuffleBtn?.addEventListener("click", toggleShuffle);
+audioEl?.addEventListener("ended", next);
+audioEl?.addEventListener("contextmenu", (e) => e.preventDefault());
+
+updateShuffleUi();
 
 document.addEventListener("keydown", (e) => {
   const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
