@@ -304,6 +304,26 @@ body {
   margin-bottom: 1rem;
 }
 
+.ae-player-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.9rem;
+}
+
+.ae-player-control-btn {
+  border: 1px solid rgba(233, 226, 217, 0.2);
+  background: rgba(130, 104, 55, 0.10);
+  color: var(--ae-cream);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--ae-radius-pill);
+  cursor: pointer;
+}
+
+.ae-player-control-btn[aria-pressed="true"] {
+  border-color: var(--ae-gold);
+  background: rgba(130, 104, 55, 0.26);
+}
+
 /* Playlist (updated for button-based rows) */
 
 .ae-playlist {
@@ -478,4 +498,95 @@ body {
   .ae-sticker-inner {
     padding: 1.75rem 1.35rem;
   }
+}
+
+.ae-card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+/* --- 2026 player + catalog visual alignment --- */
+.ae-player {
+  background: rgba(0, 0, 0, 0.62);
+  border-radius: 24px;
+  padding: 1.2rem 1.1rem;
+  border: 1px solid rgba(233, 226, 217, 0.12);
+}
+
+.ae-player-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+}
+
+.ae-player-control-btn {
+  min-width: 42px;
+  height: 32px;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(233, 226, 217, 0.2);
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--ae-cream);
+  font-size: 0.78rem;
+}
+
+#ae-audio {
+  display: none;
+}
+
+.ae-progress {
+  width: 100%;
+  accent-color: #e6e6e6;
+  cursor: pointer;
+}
+
+.ae-time {
+  font-size: 0.72rem;
+  color: var(--ae-gray);
+}
+
+.ae-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.85rem;
+}
+
+.ae-card {
+  background: rgba(0, 0, 0, 0.58);
+  border: 1px solid rgba(233, 226, 217, 0.1);
+  border-radius: 14px;
+  padding: 0.8rem;
+}
+
+.ae-card-art,
+.ae-card-art--placeholder {
+  display: none;
+}
+
+.ae-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.ae-card-sub {
+  font-size: 0.78rem;
+  color: var(--ae-gray);
+  margin-bottom: 0.5rem;
+}
+
+.ae-card-actions .ae-button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: var(--ae-gold);
+  font-size: 0.86rem;
+  justify-content: flex-start;
+}
+
+.ae-card-actions .ae-button:hover {
+  box-shadow: none;
+  text-decoration: underline;
 }
