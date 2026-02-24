@@ -8,11 +8,13 @@ const yearEl = document.getElementById("ae-year");
 const carouselEl = document.getElementById("ae-carousel");
 const prevBtn = document.getElementById("ae-prev");
 const nextBtn = document.getElementById("ae-next");
+const shuffleBtn = document.getElementById("ae-shuffle");
 
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 let tracks = [];
 let currentIndex = 0;
+let shuffleEnabled = false;
 
 function safeText(s) {
   return String(s ?? "").trim();
@@ -34,15 +36,6 @@ function modIndex(i) {
   return (i + tracks.length) % tracks.length;
 }
 
-function saveIndex() {
-  localStorage.setItem("ae_currentIndex", String(currentIndex));
-}
-
-function loadSavedIndex() {
-  const n = parseInt(localStorage.getItem("ae_currentIndex") || "0", 10);
-  return Number.isFinite(n) ? n : 0;
-}
-
 function updateCarouselPosition() {
   if (!carouselEl) return;
   carouselEl.style.transform = `translateX(${-currentIndex * 100}%)`;
@@ -62,7 +55,6 @@ function setIndex(i, { preloadAudio = true } = {}) {
 
   const t = tracks[currentIndex];
   setNowPlaying(safeText(t.title) || "--");
-  saveIndex();
 
   if (preloadAudio && audioEl) {
     audioEl.src = encodePath(t.file);
@@ -76,8 +68,33 @@ function playIndex(i, autoplay = true) {
   if (autoplay) audioEl.play().catch(() => {});
 }
 
-function next() { playIndex(currentIndex + 1, true); }
+function next() {
+  if (!tracks.length) return;
+
+  if (!shuffleEnabled || tracks.length < 2) {
+    playIndex(currentIndex + 1, true);
+    return;
+  }
+
+  let candidate = currentIndex;
+  while (candidate === currentIndex) {
+    candidate = Math.floor(Math.random() * tracks.length);
+  }
+  playIndex(candidate, true);
+}
+
 function prev() { playIndex(currentIndex - 1, true); }
+
+function updateShuffleUi() {
+  if (!shuffleBtn) return;
+  shuffleBtn.setAttribute("aria-pressed", String(shuffleEnabled));
+  shuffleBtn.textContent = shuffleEnabled ? "Shuffle: On" : "Shuffle: Off";
+}
+
+function toggleShuffle() {
+  shuffleEnabled = !shuffleEnabled;
+  updateShuffleUi();
+}
 
 function renderCarousel() {
   if (!carouselEl) return;
@@ -144,7 +161,7 @@ async function loadTracksFromApi() {
 
     renderCarousel();
 
-    currentIndex = modIndex(loadSavedIndex());
+    currentIndex = 0;
     setIndex(currentIndex, { preloadAudio: true });
   } catch (e) {
     console.error("Player load failed:", e);
@@ -155,7 +172,11 @@ async function loadTracksFromApi() {
 // controls
 prevBtn?.addEventListener("click", prev);
 nextBtn?.addEventListener("click", next);
+shuffleBtn?.addEventListener("click", toggleShuffle);
 audioEl?.addEventListener("ended", next);
+audioEl?.addEventListener("contextmenu", (e) => e.preventDefault());
+
+updateShuffleUi();
 
 document.addEventListener("keydown", (e) => {
   const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";

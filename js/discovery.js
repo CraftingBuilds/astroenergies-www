@@ -1,5 +1,6 @@
 // /music/astroenergies/js/discovery.js
 const DISCOVERY_API = "/music/astroenergies/api/discovery.php";
+const SPOTIFY_ARTIST_URL = "https://open.spotify.com/artist/34NDHO9gb3k7UOrJHUWltB?si=g8MGsMYaRkKGn1hYBRWQYw";
 
 function safe(s) {
   return String(s ?? "").trim();
@@ -40,9 +41,13 @@ function renderDiscovery(tracks) {
       ? `<img class="ae-card-art" src="${encodePath(artwork)}" alt="${title} cover" loading="lazy">`
       : `<div class="ae-card-art ae-card-art--placeholder"></div>`;
 
-    const linkHtml = url
+    const appleLinkHtml = url
       ? `<a class="ae-button" href="${esc(url)}" target="_blank" rel="noopener">Open on Apple Music</a>`
       : ``;
+
+    const spotifyLinkHtml = `<a class="ae-button" href="${esc(SPOTIFY_ARTIST_URL)}" target="_blank" rel="noopener">Open in Spotify</a>`;
+
+    const linkHtml = `${appleLinkHtml}${spotifyLinkHtml}`;
 
     return `
       <div class="ae-card">
