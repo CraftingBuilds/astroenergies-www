@@ -56,18 +56,23 @@
           <span id="ae-now-title">--</span>
         </div>
 
-        <audio id="ae-audio" controls controlslist="nodownload noremoteplayback" preload="metadata">
+        <audio id="ae-audio" controls controlslist="nodownload noremoteplayback" preload="metadata" disablepictureinpicture>
           Your browser does not support the audio element.
         </audio>
+
+        <div class="ae-player-controls">
+          <button class="ae-player-control-btn" id="ae-shuffle" type="button" aria-pressed="false" aria-label="Toggle shuffle playback">Shuffle: Off</button>
+        </div>
 
         <div class="ae-carousel-wrap">
           <button class="ae-carousel-btn" id="ae-prev" type="button" aria-label="Previous track">‹</button>
 
           <div class="ae-carousel-viewport">
-            <div class="ae-carousel-viewport"></div>
+            <div class="ae-carousel" id="ae-carousel"></div>
           </div>
 
-          <button class="ae-carousel-btn" id="ae-next" type="button" aria-label="Next track">,</button>
+          <button class="ae-carousel-btn" id="ae-next" type="button" aria-label="Next track">&gt;</button>
+        </div>
       </div>
     </section>
 
@@ -96,8 +101,14 @@
         <a class="ae-button" href="https://music.apple.com/us/artist/astroenergies/1832538332" target="_blank" rel="noopener">
           Apple Music Artist Page ①
         </a>
+        <a class="ae-button" href="https://open.spotify.com/artist/34NDHO9gb3k7UOrJHUWltB?si=g8MGsMYaRkKGn1hYBRWQYw" target="_blank" rel="noopener">
+          Spotify Artist Page ①
+        </a>
         <a class="ae-button" href="https://music.apple.com/us/artist/astroenergies/1831765259" target="_blank" rel="noopener">
           Apple Music Artist Page ②
+        </a>
+        <a class="ae-button" href="https://open.spotify.com/artist/34NDHO9gb3k7UOrJHUWltB?si=g8MGsMYaRkKGn1hYBRWQYw" target="_blank" rel="noopener">
+          Spotify Artist Page ②
         </a>
       </div>
     </section>

@@ -304,6 +304,26 @@ body {
   margin-bottom: 1rem;
 }
 
+.ae-player-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.9rem;
+}
+
+.ae-player-control-btn {
+  border: 1px solid rgba(233, 226, 217, 0.2);
+  background: rgba(130, 104, 55, 0.10);
+  color: var(--ae-cream);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--ae-radius-pill);
+  cursor: pointer;
+}
+
+.ae-player-control-btn[aria-pressed="true"] {
+  border-color: var(--ae-gold);
+  background: rgba(130, 104, 55, 0.26);
+}
+
 /* Playlist (updated for button-based rows) */
 
 .ae-playlist {
@@ -478,4 +498,11 @@ body {
   .ae-sticker-inner {
     padding: 1.75rem 1.35rem;
   }
+}
+
+.ae-card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
 }
